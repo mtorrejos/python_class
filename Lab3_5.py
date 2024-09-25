@@ -1,12 +1,10 @@
 import RPi.GPIO as GPIO
 import time
 
-
 PButtonA = 16
 LED1 = 18
 PButtonB = 13
 LED2 = 15
-currentLED = None
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(LED1, GPIO.OUT)
@@ -21,13 +19,15 @@ try:
 		elif GPIO.input(PButtonA) == GPIO.HIGH:
 			GPIO.output(LED1, GPIO.HIGH)
 			GPIO.output(LED2, GPIO.LOW)
-			currentLED = LED1
+
 		elif GPIO.input(PButtonB) == GPIO.HIGH:
 			GPIO.output(LED2, GPIO.HIGH)
 			GPIO.output(LED1, GPIO.LOW)
+
 		else:
 			GPIO.output(LED1, GPIO.LOW)
 			GPIO.output(LED2, GPIO.LOW)
+			
 		time.sleep(0.5)
 
 except KeyboardInterrupt:
